@@ -12,5 +12,5 @@ int main()
         shell.input(input);
         std::cout << shell.output() << std::endl;
         std::cout << "Input> ";
-    } while (std::getline(std::cin, input));
+    } while (std::getline(std::cin, input) && input != "exit");
 }
