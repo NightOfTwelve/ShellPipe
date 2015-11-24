@@ -1,7 +1,8 @@
 #include "ShellPipe.h"
 #include <vector>
-#include <string.h>
-#include <assert.h>
+#include <cstring>
+#include <cassert>
+#include <cstdio>
 
 struct ShellPipe::Impl
 {
