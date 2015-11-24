@@ -14,24 +14,29 @@ struct ShellPipe::Impl
 ShellPipe::ShellPipe(const char *command, size_t outputCapacity) : pImpl(new Impl)
 {
     pImpl->output.reserve(outputCapacity);
-    input(command);
+
+    if (command)
+    {
+        input(command);
+    }
 }
 
 ShellPipe::~ShellPipe()
 {
-    delete pImpl->output;
     delete pImpl;
 }
 
 bool ShellPipe::input(std::string command)
 {
+    pImpl->output.clear();
+
     pImpl->pipe = popen(command.c_str(), "r");
 
     if (pImpl->pipe)
     {
         pImpl->valid = true;
 
-        char buffer[pImpl->output.size()]; // no clue what this should be optimized to
+        char buffer[pImpl->output.capacity()]; // no clue what this should be optimized to
 
         while (fgets(buffer, sizeof(buffer), pImpl->pipe))
         {
