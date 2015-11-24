@@ -20,6 +20,8 @@ public:
     bool valid() const; // returns whether the most recent command should have produced a valid output
 
 private:
+    ShellPipe(const ShellPipe&); //deleted
+    ShellPipe& operator=(const ShellPipe&); //deleted
     struct Impl;
     Impl *pImpl;
 };
